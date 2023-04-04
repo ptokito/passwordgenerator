@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Generator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <h1>Password Generator</h1>
+    <form method="post" action="{{ url_for('generate_password') }}">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" required>
+        <br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" required>
+        <br>
+        <button type="submit">Generate Password</button>
+    </form>
+    {% if first_name and last_name and password %}
+        <hr>
+        <h2>Generated Password</h2>
+        <p>Hi {{ first_name }} {{ last_name }}, your password is:</p>
+        <div class="password-container">
+            <input type="password" class="password" value="{{ password }}" readonly>
+            <div class="eye-icon-container">
+                <i class="far fa-eye eye-icon"></i>
+            </div>
+        </div>
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+
